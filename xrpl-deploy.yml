@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xrpl-node-deployment
+  labels:
+    app: xrpl
+    env: prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: xrpl
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: xrpl
+        env: prod
+    spec:
+      containers:
+      - name: xrpl-pod
+        image: ishita2301/xrpl:v1
+        ports:
+        - name: http
+          containerPort: 80
+        - name: https
+          containerPort: 443
+        - name: tcp
+          containerPort: 5005
+        - name: tcp1
+          containerPort: 6006
+        - name: tcp2
+          containerPort: 51235
